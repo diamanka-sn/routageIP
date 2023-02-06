@@ -1,0 +1,100 @@
+
+Current configuration : 1111 bytes
+!
+version 15.1
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname MD5
+!
+!
+!
+!
+!
+!
+!
+!
+no ip cef
+no ipv6 cef
+!
+!
+!
+!
+license udi pid CISCO2811/K9 sn FTX10174I53-
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ ip address 12.0.3.2 255.255.255.0
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/1
+ ip address 12.0.5.2 255.255.255.0
+ duplex auto
+ speed auto
+!
+interface FastEthernet1/0
+ ip address 12.0.4.2 255.255.255.0
+ duplex auto
+ speed auto
+!
+interface FastEthernet1/1
+ ip address 11.0.0.1 255.0.0.0
+ duplex auto
+ speed auto
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+router ospf 100
+ log-adjacency-changes
+!
+router rip
+ redistribute static 
+ network 11.0.0.0
+ network 12.0.0.0
+!
+ip classless
+ip route 12.0.1.0 255.255.255.0 12.0.4.1 
+ip route 12.0.0.0 255.255.255.0 12.0.3.1 
+ip route 12.0.2.0 255.255.255.0 12.0.5.1 
+ip route 10.0.0.0 255.0.0.0 11.0.0.2 
+ip route 9.0.0.0 255.255.0.0 10.0.0.2 
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end
